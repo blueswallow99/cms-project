@@ -1,6 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "strictPropertyInitialization": false,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -16,15 +18,15 @@
     "baseUrl": ".",
     "paths": {
       "@cms-project/customer-application": [
-        "customer-application/src/index.ts"
+        "libs/customer-application/src/index.ts"
       ],
-      "@cms-project/customer-domain": ["customer-domain/src/index.ts"],
-      "@cms-project/infrastructure-auth": ["infrastructure-auth/src/index.ts"],
-      "@cms-project/infrastructure-db": ["infrastructure-db/src/index.ts"],
-      "@cms-project/order-application": ["order-application/src/index.ts"],
-      "@cms-project/order-domain": ["order-domain/src/index.ts"],
-      "@cms-project/payment-application": ["payment-application/src/index.ts"],
-      "@cms-project/payment-domain": ["payment-domain/src/index.ts"]
+      "@cms-project/customer-domain": ["libs/customer-domain/src/index.ts"],
+      "@cms-project/infrastructure-auth": ["libs/infrastructure-auth/src/index.ts"],
+      "@cms-project/infrastructure-db": ["libs/infrastructure-db/src/index.ts"],
+      "@cms-project/order-application": ["libs/order-application/src/index.ts"],
+      "@cms-project/order-domain": ["libs/order-domain/src/index.ts"],
+      "@cms-project/payment-application": ["libs/payment-application/src/index.ts"],
+      "@cms-project/payment-domain": ["libs/payment-domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
