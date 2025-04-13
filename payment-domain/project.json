@@ -1,0 +1,9 @@
+{
+  "name": "payment-domain",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "payment-domain/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project payment-domain --web",
+  "targets": {}
+}

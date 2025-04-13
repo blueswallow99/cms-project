@@ -20,7 +20,8 @@
       ],
       "@cms-project/customer-domain": ["customer-domain/src/index.ts"],
       "@cms-project/order-application": ["order-application/src/index.ts"],
-      "@cms-project/order-domain": ["order-domain/src/index.ts"]
+      "@cms-project/order-domain": ["order-domain/src/index.ts"],
+      "@cms-project/payment-domain": ["payment-domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
