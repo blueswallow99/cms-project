@@ -19,6 +19,7 @@
         "customer-application/src/index.ts"
       ],
       "@cms-project/customer-domain": ["customer-domain/src/index.ts"],
+      "@cms-project/infrastructure-auth": ["infrastructure-auth/src/index.ts"],
       "@cms-project/infrastructure-db": ["infrastructure-db/src/index.ts"],
       "@cms-project/order-application": ["order-application/src/index.ts"],
       "@cms-project/order-domain": ["order-domain/src/index.ts"],
