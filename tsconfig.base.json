@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@cms-project/customer-application": [
+        "customer-application/src/index.ts"
+      ],
       "@cms-project/customer-domain": ["customer-domain/src/index.ts"],
       "@cms-project/order-domain": ["order-domain/src/index.ts"]
     }
