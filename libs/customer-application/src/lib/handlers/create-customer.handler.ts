@@ -1,12 +1,15 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateCustomerCommand } from '../commands/create-customer.command';
-import { ICustomerRepository, Customer } from '@cms-project/customer-domain';
+import { Customer, CUSTOMER_REPOSITORY } from '@cms-project/customer-domain';
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
+import { CustomerRepository } from '@cms-project/infrastructure-db';
+import { Inject } from '@nestjs/common';
 
 @CommandHandler(CreateCustomerCommand)
 export class CreateCustomerHandler implements ICommandHandler<CreateCustomerCommand> {
-  constructor(private customerRepository: ICustomerRepository) {}
+  constructor(@Inject(CUSTOMER_REPOSITORY)
+  private customerRepository: CustomerRepository,) {}
 
   async execute(command: CreateCustomerCommand): Promise<void> {
     const { email, firstName, lastName, password } = command;
