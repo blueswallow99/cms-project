@@ -1,6 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-//TODO: import orderEntety after creating it
-// import { OrderEntity } from './order.entity';
+import { OrderEntity } from './order.entity';
 
 @Entity('customers')
 export class CustomerEntity {
@@ -25,7 +24,6 @@ export class CustomerEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
-  //TODO: add the relation to order entity after creation. fix the place holder
-//   @OneToMany(() => ...)
-//   orders: OrderEntity[];
+  @OneToMany(() => OrderEntity, order => order.customer)
+  orders: OrderEntity[];
 }
