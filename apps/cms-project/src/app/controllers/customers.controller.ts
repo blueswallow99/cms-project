@@ -13,6 +13,7 @@ export class CustomersController {
     private queryBus: QueryBus,
   ) {}
 
+  //How can I create a customer before signing in? 
   @Post()
   async createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
     const command = new CreateCustomerCommand(
