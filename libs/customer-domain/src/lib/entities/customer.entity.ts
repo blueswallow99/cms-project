@@ -12,7 +12,6 @@ export class Customer extends AggregateRoot {
   constructor(id: string) {
     super();
     this.id = id;
-    
   }
 
   // Getters
@@ -56,6 +55,7 @@ export class Customer extends AggregateRoot {
   }
 
   updateEmail(email: string) {
+    //TODO: add validation later
     this.email = email;
     this.updatedAt = new Date();
   }
