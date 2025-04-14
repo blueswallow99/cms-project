@@ -1,15 +1,16 @@
-// libs/infrastructure-auth/src/lib/services/auth.service.ts
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { ICustomerRepository } from '@cms-project/customer-domain';
+import { CUSTOMER_REPOSITORY } from '@cms-project/customer-domain';
+import { CustomerRepository } from '@cms-project/infrastructure-db';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private customerRepository: ICustomerRepository,
+    @Inject(CUSTOMER_REPOSITORY)
+    private customerRepository: CustomerRepository,
     private jwtService: JwtService,
-  ) {}
+  ) {  console.log(this.customerRepository, "-----------------------------------");}
 
   async validateUser(email: string, password: string): Promise<any> {
     const customer = await this.customerRepository.findByEmail(email);
@@ -17,7 +18,6 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    // This would need modification based on how you store passwords
     const isPasswordValid = await bcrypt.compare(password, customer.getPasswordHash());
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');

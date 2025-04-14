@@ -5,9 +5,11 @@ import { CUSTOMER_REPOSITORY } from '@cms-project/customer-domain';
 import { CustomerRepository } from './repositories/customer.repository';
 import { ORDER_REPOSITORY } from '@cms-project/order-domain';
 import { OrderRepository } from './repositories/order.repository';
+import { OrderEntity } from './entities/order.entity';
+import { OrderItemEntity } from './entities/order-item.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CustomerEntity])],
+  imports: [TypeOrmModule.forFeature([CustomerEntity, OrderEntity, OrderItemEntity])],
   providers: [
     {
       provide: CUSTOMER_REPOSITORY,

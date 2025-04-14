@@ -1,13 +1,13 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { ICustomerRepository } from '@cms-project/customer-domain';
+import { CUSTOMER_REPOSITORY, ICustomerRepository } from '@cms-project/customer-domain';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private customerRepository: ICustomerRepository,
+    @Inject(CUSTOMER_REPOSITORY) private customerRepository: ICustomerRepository,
     configService: ConfigService,
   ) {
     const jwtSecret = configService.get<string>('JWT_SECRET');
