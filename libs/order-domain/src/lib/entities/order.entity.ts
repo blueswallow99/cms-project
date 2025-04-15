@@ -73,9 +73,13 @@ export class Order extends AggregateRoot {
     order.customerId = customerId;
     order.items = items;
     order.totalAmount = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
+      (sum, item) => sum + (Number(item.price) * Number(item.quantity)),
       0
     );
+    
+    if (isNaN(order.totalAmount)) {
+      throw new Error('Invalid order total calculation');
+    }
     order.status = OrderStatus.PENDING;
     order.createdAt = new Date();
     order.updatedAt = new Date();

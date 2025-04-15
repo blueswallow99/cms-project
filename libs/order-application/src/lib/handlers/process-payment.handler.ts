@@ -1,15 +1,23 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { ProcessPaymentCommand } from '../commands/process-payment.command';
-import { IOrderRepository, OrderStatus } from '@cms-project/order-domain';
+import {
+  IOrderRepository,
+  ORDER_REPOSITORY,
+  OrderStatus,
+} from '@cms-project/order-domain';
 import { IPaymentService } from '@cms-project/payment-domain';
+import { OrderRepository } from '@cms-project/infrastructure-db';
+import { Inject } from '@nestjs/common';
+import { MockPaymentService } from '@cms-project/payment-application';
 
 @CommandHandler(ProcessPaymentCommand)
 export class ProcessPaymentHandler
   implements ICommandHandler<ProcessPaymentCommand>
 {
   constructor(
-    private orderRepository: IOrderRepository,
-    private paymentService: IPaymentService
+    @Inject(ORDER_REPOSITORY)
+    private orderRepository: OrderRepository,
+    private paymentService: MockPaymentService
   ) {}
 
   async execute(command: ProcessPaymentCommand): Promise<any> {

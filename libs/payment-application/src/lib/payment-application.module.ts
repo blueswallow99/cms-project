@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { MockPaymentService } from './services/mock-payment.service';
 
 @Module({
   controllers: [],
-  providers: [],
-  exports: [],
+  providers: [MockPaymentService],
+  exports: [MockPaymentService],
 })
 export class PaymentApplicationModule {}

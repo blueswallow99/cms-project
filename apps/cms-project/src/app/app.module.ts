@@ -18,6 +18,7 @@ import { HealthController } from './controllers/health.controller';
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
+      envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -30,7 +31,7 @@ import { HealthController } from './controllers/health.controller';
         password: configService.get('database.password'),
         database: configService.get('database.name'),
         entities: [CustomerEntity, OrderEntity, OrderItemEntity],
-        synchronize: true,
+        synchronize: true, //false in production
       }),
     }),
     CqrsModule,

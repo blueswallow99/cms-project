@@ -48,8 +48,18 @@ export class OrderRepository implements IOrderRepository {
   }
 
   async update(order: DomainOrder): Promise<void> {
-    const orderEntity = this.toInfrastructureEntity(order);
-    await this.orderRepository.save(orderEntity);
+    const existingOrder = await this.orderRepository.findOne({
+      where: { id: order.getId() },
+      relations: ['items']
+    });
+    
+    if (!existingOrder) {
+      throw new Error(`Order with ID ${order.getId()} not found`);
+    }
+    existingOrder.status = order.getStatus();
+    existingOrder.updatedAt = new Date();
+  
+    await this.orderRepository.save(existingOrder);
   }
 
   async delete(id: string): Promise<void> {
@@ -84,6 +94,7 @@ export class OrderRepository implements IOrderRepository {
     orderEntity.id = order.getId();
     orderEntity.customerId = order.getCustomerId();
     orderEntity.status = order.getStatus();
+    orderEntity.totalAmount = order.getTotalAmount();
     orderEntity.paymentId = order.getPaymentId();
     orderEntity.createdAt = order.getCreatedAt();
     orderEntity.updatedAt = order.getUpdatedAt();

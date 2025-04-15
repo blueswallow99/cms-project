@@ -14,7 +14,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     CustomerDomainModule,
     TypeOrmModule.forFeature([CustomerEntity]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

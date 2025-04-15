@@ -1,11 +1,14 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { UpdateCustomerCommand } from '../commands/update-customer.command';
-import { ICustomerRepository } from '@cms-project/customer-domain';
+import { CUSTOMER_REPOSITORY, ICustomerRepository } from '@cms-project/customer-domain';
 import * as bcrypt from 'bcrypt';
+import { Inject } from '@nestjs/common';
+import { CustomerRepository } from '@cms-project/infrastructure-db';
 
 @CommandHandler(UpdateCustomerCommand)
 export class UpdateCustomerHandler implements ICommandHandler<UpdateCustomerCommand> {
-  constructor(private customerRepository: ICustomerRepository) {}
+  constructor(@Inject(CUSTOMER_REPOSITORY)
+  private customerRepository: CustomerRepository,) {}
 
   async execute(command: UpdateCustomerCommand): Promise<void> {
     const { id, email, firstName, lastName, password } = command;
